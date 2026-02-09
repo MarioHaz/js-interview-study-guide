@@ -86,6 +86,18 @@ user.age = 16;        // ✅ ok
 console.log(user);    // { name: "Luis", age: 16 }
 ```
 
+3) How to make the object “not change”
+
+If you want to prevent mutation, you need immutability tools, not const.
+
+Runtime “freeze” (shallow)
+```javascript
+const user = Object.freeze({ name: "Ana", meta: { score: 1 } });
+
+// user.name = "Luis";         // ❌ fails (in strict mode throws)
+// user.meta.score = 2;        // ✅ still changes! (nested object not frozen)
+```
+
 ## 4. Hoisting and Its Types
 
 **Hoisting** moves variable and function declarations to the top of their scope before execution.
