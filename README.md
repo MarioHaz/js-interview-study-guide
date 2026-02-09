@@ -57,7 +57,7 @@ function redeclareReassignDemo() {
 
   const c = 1;
   // c = 2; // ❌ TypeError (can't reassign const)
-  // const c =2 //❌ TypeError (can't redeclare const)
+  // const c = 2 //❌ SyntaxError (parse-time): Identifier 'c' has already been declared
   console.log(a, b, c); // 2 2 1
 }
 redeclareReassignDemo();
