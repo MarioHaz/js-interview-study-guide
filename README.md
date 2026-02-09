@@ -57,6 +57,7 @@ function redeclareReassignDemo() {
 
   const c = 1;
   // c = 2; // ❌ TypeError (can't reassign const)
+  // const c =2 //❌ TypeError (can't redeclare const)
   console.log(a, b, c); // 2 2 1
 }
 redeclareReassignDemo();
