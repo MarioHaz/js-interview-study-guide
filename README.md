@@ -31,6 +31,20 @@ function hoistDemo() {
   console.log(a, b, c); // 1 2 3
 }
 hoistDemo();
+
+// 2) Scope (block vs function)
+function scopeDemo() {
+  if (true) {
+    var x = "var in block";
+    let y = "let in block";
+    const z = "const in block";
+  }
+
+  console.log(x); // ✅ works (var is function-scoped)
+  // console.log(y); // ❌ ReferenceError (let is block-scoped)
+  // console.log(z); // ❌ ReferenceError (const is block-scoped)
+}
+scopeDemo();
 ```
 
 ## 4. Hoisting and Its Types
