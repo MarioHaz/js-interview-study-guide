@@ -76,6 +76,16 @@ user = { name: "Luis" };
 // ❌ TypeError: Assignment to constant variable
 ```
 
+2) “Object contents may still change” = the value is mutable
+```javascript
+const user = { name: "Ana" };
+
+user.name = "Luis";   // ✅ ok (mutating the same object)
+user.age = 16;        // ✅ ok
+
+console.log(user);    // { name: "Luis", age: 16 }
+```
+
 ## 4. Hoisting and Its Types
 
 **Hoisting** moves variable and function declarations to the top of their scope before execution.
