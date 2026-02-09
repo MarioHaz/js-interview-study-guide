@@ -62,6 +62,19 @@ function redeclareReassignDemo() {
 }
 redeclareReassignDemo();
 ```
+const has two separate ideas:
+
+The binding is constant (the variable name can’t point to a different value)
+
+The value it points to might be mutable (objects/arrays can be changed inside)
+
+1) “Cannot reassign” = binding can’t change
+```javascript
+const user = { name: "Ana" };
+
+user = { name: "Luis" }; 
+// ❌ TypeError: Assignment to constant variable
+```
 
 ## 4. Hoisting and Its Types
 
