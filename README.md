@@ -45,6 +45,21 @@ function scopeDemo() {
   // console.log(z); // ❌ ReferenceError (const is block-scoped)
 }
 scopeDemo();
+
+// 3) Redeclare vs Reassign
+function redeclareReassignDemo() {
+  var a = 1;
+  var a = 2; // ✅ redeclare allowed
+
+  let b = 1;
+  // let b = 2; // ❌ SyntaxError (can't redeclare in same scope)
+  b = 2; // ✅ reassign allowed
+
+  const c = 1;
+  // c = 2; // ❌ TypeError (can't reassign const)
+  console.log(a, b, c); // 2 2 1
+}
+redeclareReassignDemo();
 ```
 
 ## 4. Hoisting and Its Types
