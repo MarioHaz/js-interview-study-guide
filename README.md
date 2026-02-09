@@ -18,11 +18,19 @@ ECMAScript (ES) is the **standard** that defines JavaScript’s features and syn
 
 Example:
 ```javascript
-console.log(x); // Undefined (hoisting)
-var x = 10;
+// 1) Hoisting + TDZ (Temporal Dead Zone)
+function hoistDemo() {
+  console.log(a); // ✅ undefined (var is hoisted + initialized to undefined)
+  // console.log(b); // ❌ ReferenceError (TDZ)
+  // console.log(c); // ❌ ReferenceError (TDZ)
 
-console.log(y); // ReferenceError
-let y = 20;
+  var a = 1;
+  let b = 2;
+  const c = 3;
+
+  console.log(a, b, c); // 1 2 3
+}
+hoistDemo();
 ```
 
 ## 4. Hoisting and Its Types
