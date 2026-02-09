@@ -98,6 +98,7 @@ const user = Object.freeze({ name: "Ana", meta: { score: 1 } });
 // user.meta.score = 2;        // ✅ still changes! (nested object not frozen)
 ```
 
+
 ## 4. Hoisting and Its Types
 
 **Hoisting** moves variable and function declarations to the top of their scope before execution.
