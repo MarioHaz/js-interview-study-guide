@@ -62,7 +62,7 @@ function redeclareReassignDemo() {
 }
 redeclareReassignDemo();
 ```
-const has two separate ideas:
+**const has two separate ideas:**
 
 The binding is constant (the variable name can’t point to a different value)
 
