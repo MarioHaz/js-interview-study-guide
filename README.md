@@ -4,11 +4,87 @@
 
 JavaScript is a **high-level, interpreted programming language** used primarily for **web development**. It enables interactive web pages and runs in the browser but can also be used on the server with environments like **Node.js**.
 
-## 2. What is ECMAScript?
+
+## 2. JavaScript single main execution thread
+
+JavaScript runs your code on a single main execution thread. It can start async work (timers, network, I/O) elsewhere, but the callbacks still run back on the main thread via the event loop when the call stack is empty. Microtasks (Promises) run before the next macrotask (timers/events).
+
+# 1) The execution thread: what it is?
+
+Think of the JS “execution thread” as the one lane road where JS code actually executes.
+
+On that one thread you have:
+
+- Call Stack: where currently executing functions live (LIFO).
+
+- Heap: where objects/arrays/functions live in memory.
+
+- Event Loop: traffic controller that decides what runs next.
+
+- Task Queues:
+
+ - Macrotask queue (aka task queue): setTimeout, DOM events, setInterval, message events, etc.
+
+ - Microtask queue: Promise.then/catch/finally, queueMicrotask, MutationObserver (browser).
+
+## 2) Microtasks vs macrotasks (the interview favorite)
+
+Example: order of logs
+
+```javascript
+console.log("A");
+
+setTimeout(() => console.log("B"), 0);
+
+Promise.resolve().then(() => console.log("C"));
+
+console.log("D");
+```
+
+What prints?
+
+A (sync)
+
+D (sync)
+
+C (microtask runs after stack empty)
+
+B (macrotask runs next tick)
+
+So output: A D C B
+
+Why? Promise.then goes to the microtask queue; setTimeout goes to the macrotask queue.
+
+## 3) What “async” really means in JS
+
+Async doesn’t mean “runs on another JS thread.”
+It means:
+
+- JS asks the environment to do something later (timer/network/I/O).
+
+- JS continues.
+
+- When the work completes, the environment queues a callback.
+
+- The event loop runs that callback when it’s allowed.
+
+```javascript
+console.log("1");
+
+fetch("/api").then(() => console.log("2"));
+
+console.log("3");
+```
+
+fetch starts network work outside JS.
+The .then(...) callback becomes a microtask once the promise resolves.
+So you’ll see: 1 3 2 (assuming the request completes later).
+
+## 3. What is ECMAScript?
 
 ECMAScript (ES) is the **standard** that defines JavaScript’s features and syntax. ECMAScript updates (e.g., **ES6, ES7, ES8**) introduce new functionalities like **arrow functions, classes, template literals**, and more.
 
-## 3. Variable Declarations: `var`, `let`, and `const`
+## 4. Variable Declarations: `var`, `let`, and `const`
 
 | Keyword | Scope | Hoisting | Can be Reassigned? | Can be Redeclared? |
 |---------|--------|----------|-------------------|--------------------|
@@ -99,7 +175,7 @@ const user = Object.freeze({ name: "Ana", meta: { score: 1 } });
 ```
 
 
-## 4. Hoisting and Its Types
+## 5. Hoisting and Its Types
 
 **Hoisting** moves variable and function declarations to the top of their scope before execution.
 - **Variable Hoisting:** Variables declared with `var` are hoisted but initialized with `undefined`, while `let` and `const` are hoisted but remain **uninitialized**.
@@ -113,13 +189,13 @@ function hoistedFunction() {
 }
 ```
 
-## 5. How JavaScript Manages Memory
+## 6. How JavaScript Manages Memory
 
 - **Stack (Stash):** Stores **primitive values** and function execution contexts.
 - **Heap:** Stores **objects and reference types**.
 - **Garbage Collection:** Uses **reference counting and mark-and-sweep** algorithms to free memory.
 
-## 6. Scope and Scope Chain
+## 7. Scope and Scope Chain
 
 - **Global Scope:** Variables accessible everywhere.
 - **Function Scope:** Variables inside a function.
@@ -221,7 +297,7 @@ const arrowPerson = new ArrowPerson("Bob"); // ❌ TypeError: ArrowPerson is not
 
 **Scope Chain:** When a variable is accessed, JavaScript looks for it in the local scope first, then moves up to parent scopes until it reaches the global scope.
 
-## 7. What is `"use strict"`?
+## 8. What is `"use strict"`?
 
 Using `"use strict"` enables **strict mode**, which prevents silent errors and enforces best practices.
 
@@ -231,7 +307,7 @@ Example:
 x = 10; // ReferenceError: x is not defined
 ```
 
-## 8. Higher-Order Functions
+## 9. Higher-Order Functions
 
 Functions that **take other functions as arguments or return functions**.
 
@@ -243,7 +319,7 @@ function operate(operation, x, y) {
 console.log(operate((a, b) => a + b, 5, 3)); // Output: 8
 ```
 
-## 9. `this` Keyword
+## 10. `this` Keyword
 
 `this` refers to the **execution context**.
 
@@ -262,7 +338,7 @@ const obj = {
 obj.print(); // Output: JS
 ```
 
-## 10. Call, Apply, and Bind
+## 11. Call, Apply, and Bind
 
 | Method  | Description |
 |---------|-------------|
@@ -283,7 +359,7 @@ const boundFunc = greet.bind(person, 'Hey');
 boundFunc(); // Hey, Alice
 ```
 
-## 11. Closures: What and When to Use?
+## 12. Closures: What and When to Use?
 
 A **closure** is a function that remembers the variables from its outer scope.
 
@@ -306,7 +382,7 @@ increment(); // Output: 2
 - **Memoization**
 - **Event handlers**
 
-## 12. Objects in JavaScript
+## 13. Objects in JavaScript
 
 Objects store key-value pairs and methods.
 
@@ -322,7 +398,7 @@ const person = {
 person.greet();
 ```
 
-## 13. Logical operators in JavaScript
+## 14. Logical operators in JavaScript
 
 JavaScript logical operators don’t just return true/false — they often return one of the operands due to short-circuiting.
 
@@ -401,7 +477,7 @@ undefined ?? 5   // 5
 
 Why it exists: || treats 0, "", false as “missing”, but ?? does not.
 
-## 14. Memoization
+## 15. Memoization
 
 Memoization optimizes functions by caching results of expensive calculations.
 
@@ -419,7 +495,7 @@ const factorial = memoize(n => (n <= 1 ? 1 : n * factorial(n - 1)));
 console.log(factorial(5));
 ```
 
-## 15. The DOM (Document Object Model)
+## 16. The DOM (Document Object Model)
 
 The DOM represents HTML as a tree structure. JavaScript can manipulate it using:
 - `document.getElementById('id')`
@@ -427,7 +503,7 @@ The DOM represents HTML as a tree structure. JavaScript can manipulate it using:
 - `element.innerHTML = 'Hello'`
 - `element.style.color = 'red'`
 
-## 16. Constructors in JavaScript
+## 17. Constructors in JavaScript
 
 Constructors are functions used to create objects.
 
@@ -441,7 +517,7 @@ const user = new Person('John', 25);
 console.log(user.name); // John
 ```
 
-## 17. Local Storage vs Session Storage vs Cookies
+## 18. Local Storage vs Session Storage vs Cookies
 
 | Feature | Local Storage | Session Storage | Cookies |
 |---------|--------------|----------------|---------|
@@ -450,7 +526,7 @@ console.log(user.name); // John
 | **Accessibility** | Only client-side | Only client-side | Sent with HTTP requests |
 | **Use Case** | Storing user preferences | Temporary session data | Authentication, tracking |
 
-## 18. Array Methods
+## 19. Array Methods
 
 JavaScript provides various built-in methods for working with arrays. Below is a comprehensive table of common array methods, along with their descriptions and examples.
 
@@ -481,7 +557,7 @@ JavaScript provides various built-in methods for working with arrays. Below is a
 | `unshift()` | Adds elements to the beginning of an array. | `const nums = [2, 3]; nums.unshift(1); console.log(nums); // [1, 2, 3]` |
 | `flat()` | Flattens nested arrays. | `const nums = [1, [2, 3], [4]]; console.log(nums.flat()); // [1, 2, 3, 4]` |
 
-### 19. String Methods
+### 20. String Methods
 
 JavaScript provides a variety of built-in methods to manipulate and interact with strings. Below is a comprehensive table of common string methods, along with their descriptions and examples.
 
@@ -513,7 +589,7 @@ JavaScript provides a variety of built-in methods to manipulate and interact wit
 | `search()` | Searches a string for a regular expression and returns the position. | `console.log("Hello 123".search(/\d/)); // 6` |
 
 
-## 20. Memory Management
+## 21. Memory Management
 
 JavaScript manages memory automatically through **garbage collection**, but understanding how memory allocation works is crucial for writing efficient and optimized code.
 
@@ -592,7 +668,7 @@ createUser(); // The 'user' object becomes unreachable after function execution
 - Use **efficient loops and avoid unnecessary object references**.
 - Optimize **arrays and objects** by minimizing deep copies.
 
-## 21. Understanding Classes in JavaScript
+## 22. Understanding Classes in JavaScript
 
 ### 1. What Are Classes?
 
@@ -762,7 +838,7 @@ myCar.startCar(); // "Engine started"
 - **Readability**: More intuitive than prototype-based syntax.
 - **Scalability**: Encourages modular design.
 
-## 22. Software Design Patterns
+## 23. Software Design Patterns
 
 ### 1. What Are Design Patterns?
 
