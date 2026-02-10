@@ -332,6 +332,75 @@ JavaScript logical operators don’t just return true/false — they often retur
 |---------|--------------|
 | false, 0, -0, "" (empty string), null, undefined, NaN| Everything else is truthy (including "0", [], {}, "false"). |
 
+### 2) || (OR)
+
+##Meaning
+
+“Return the first truthy operand; if none, return the last operand.”
+
+```javascript
+"hello" || "default"   // "hello"
+0 || 10                // 10
+"" || "fallback"       // "fallback"
+null || "x"            // "x"
+```
+Short-circuit
+
+If the left side is truthy, the right side won’t run:
+
+```javascript
+true || doSomething();   // doSomething not called
+```
+### 3) && (AND)
+
+## Meaning
+
+“Return the first falsy operand; if none, return the last operand.”
+
+```javascript
+"ok" && 123        // 123
+0 && 123           // 0
+null && "x"        // null
+true && "yes"      // "yes"
+```
+
+##Short-circuit
+
+If the left side is falsy, the right side won’t run:
+
+```javascript
+false && doSomething();  // doSomething not call
+```
+
+### 4) ! (NOT)
+
+## Meaning
+
+Converts to boolean and flips it.
+
+```javascript
+!true       // false
+!0          // true
+!"hello"    // false
+!!"hello"   // true (double NOT forces boolean)
+```
+
+### 5) ?? (Nullish coalescing)
+
+## Meaning
+
+“Return left operand unless it’s null or undefined, otherwise return right.”
+
+```javascript
+0 ?? 10          // 0
+"" ?? "x"        // ""
+false ?? true    // false
+null ?? "x"      // "x"
+undefined ?? 5   // 5
+```
+
+Why it exists: || treats 0, "", false as “missing”, but ?? does not.
+
 ## 13. Memoization
 
 Memoization optimizes functions by caching results of expensive calculations.
