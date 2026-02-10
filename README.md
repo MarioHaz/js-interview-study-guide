@@ -329,7 +329,7 @@ JavaScript logical operators don’t just return true/false — they often retur
 ### 1. Truthy vs Falsy
 
 | Falsy values | Truthy |
-|---------|--------------|----------------|---------|
+|---------|--------------|
 | false, 0, -0, "" (empty string), null, undefined, NaN| Everything else is truthy (including "0", [], {}, "false"). |
 
 ## 13. Memoization
