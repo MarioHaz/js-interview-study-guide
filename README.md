@@ -1017,4 +1017,86 @@ payment.pay(100); // "Paid $100 using PayPal."
 | Need to allow objects to react to events  | **Observer**        |
 | Need to optimize object access            | **Proxy**           |
 
+## 24 Exercises
 
+### 1) reverseString(str) (two versions)
+Version A (manual loop)
+
+```javascript
+function reverseString(str) {
+  let reversed = "";
+  for (let i = 0; i < str.length; i++) {
+    reversed = str[i] + reversed;
+  }
+  return reversed;
+}
+```
+
+Version B (split().reverse().join())
+
+```javascript
+function reverseString(str) {
+  return str.split("").reverse().join("");
+}
+```
+
+- Converts string to array of chars → reverses → joins back.
+
+- Easy and common.
+
+- Time/space also effectively O(n).
+
+### addItem() (React array state update)
+
+```javascript
+const addItem = () => {
+  const newItem = { id: items.length + 1, name: `Item ${items.length + 1}` };
+  setItems((prevItems) => [...prevItems, newItem]);
+};
+```
+
+- Builds a new item.
+
+- Uses immutable update: spreads previous array and adds the new item.
+
+### sumnotnegativenumbers(arr)
+
+```javascript
+function sumnotnegativenumbers(arr) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] >= 0) sum += arr[i];
+  }
+  return sum;
+}
+```
+- Sums only numbers that are >= 0.
+
+### palyndrome(str)
+
+```javascript
+function palyndrome(str) {
+  const reversed = str.split("").reverse().join("");
+  return str === reversed;
+}
+```
+- Reverses and compares.
+
+### mostRepeatedCharacter(str)
+
+```javascript
+function mostRepeatedCharacter(str) {
+  const charCount = {};
+  let maxChar = "";
+  let maxCount = 0;
+
+  for (let char of str) {
+    charCount[char] = (charCount[char] ?? 0) + 1;
+    if (charCount[char] > maxCount) {
+      maxCount = charCount[char];
+      maxChar = char;
+    }
+  }
+  return maxChar;
+}
+```
