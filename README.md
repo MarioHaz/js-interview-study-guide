@@ -334,7 +334,7 @@ JavaScript logical operators don’t just return true/false — they often retur
 
 ### 2) || (OR)
 
-##Meaning
+## Meaning
 
 “Return the first truthy operand; if none, return the last operand.”
 
