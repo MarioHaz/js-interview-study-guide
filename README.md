@@ -322,6 +322,10 @@ const person = {
 person.greet();
 ```
 
+## 12. Logical operators in JavaScript
+
+JavaScript logical operators don’t just return true/false — they often return one of the operands due to short-circuiting.
+
 ## 13. Memoization
 
 Memoization optimizes functions by caching results of expensive calculations.
