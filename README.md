@@ -364,7 +364,7 @@ null && "x"        // null
 true && "yes"      // "yes"
 ```
 
-##Short-circuit
+## Short-circuit
 
 If the left side is falsy, the right side won’t run:
 
