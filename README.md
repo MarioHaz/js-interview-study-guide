@@ -322,7 +322,7 @@ const person = {
 person.greet();
 ```
 
-## 12. Logical operators in JavaScript
+## 13. Logical operators in JavaScript
 
 JavaScript logical operators don’t just return true/false — they often return one of the operands due to short-circuiting.
 
@@ -401,7 +401,7 @@ undefined ?? 5   // 5
 
 Why it exists: || treats 0, "", false as “missing”, but ?? does not.
 
-## 13. Memoization
+## 14. Memoization
 
 Memoization optimizes functions by caching results of expensive calculations.
 
@@ -419,7 +419,7 @@ const factorial = memoize(n => (n <= 1 ? 1 : n * factorial(n - 1)));
 console.log(factorial(5));
 ```
 
-## 14. The DOM (Document Object Model)
+## 15. The DOM (Document Object Model)
 
 The DOM represents HTML as a tree structure. JavaScript can manipulate it using:
 - `document.getElementById('id')`
@@ -427,7 +427,7 @@ The DOM represents HTML as a tree structure. JavaScript can manipulate it using:
 - `element.innerHTML = 'Hello'`
 - `element.style.color = 'red'`
 
-## 15. Constructors in JavaScript
+## 16. Constructors in JavaScript
 
 Constructors are functions used to create objects.
 
@@ -441,7 +441,7 @@ const user = new Person('John', 25);
 console.log(user.name); // John
 ```
 
-## 16. Local Storage vs Session Storage vs Cookies
+## 17. Local Storage vs Session Storage vs Cookies
 
 | Feature | Local Storage | Session Storage | Cookies |
 |---------|--------------|----------------|---------|
@@ -450,7 +450,7 @@ console.log(user.name); // John
 | **Accessibility** | Only client-side | Only client-side | Sent with HTTP requests |
 | **Use Case** | Storing user preferences | Temporary session data | Authentication, tracking |
 
-## 17. Array Methods
+## 18. Array Methods
 
 JavaScript provides various built-in methods for working with arrays. Below is a comprehensive table of common array methods, along with their descriptions and examples.
 
@@ -481,7 +481,7 @@ JavaScript provides various built-in methods for working with arrays. Below is a
 | `unshift()` | Adds elements to the beginning of an array. | `const nums = [2, 3]; nums.unshift(1); console.log(nums); // [1, 2, 3]` |
 | `flat()` | Flattens nested arrays. | `const nums = [1, [2, 3], [4]]; console.log(nums.flat()); // [1, 2, 3, 4]` |
 
-### 18. String Methods
+### 19. String Methods
 
 JavaScript provides a variety of built-in methods to manipulate and interact with strings. Below is a comprehensive table of common string methods, along with their descriptions and examples.
 
@@ -513,7 +513,7 @@ JavaScript provides a variety of built-in methods to manipulate and interact wit
 | `search()` | Searches a string for a regular expression and returns the position. | `console.log("Hello 123".search(/\d/)); // 6` |
 
 
-## 19. Memory Management
+## 20. Memory Management
 
 JavaScript manages memory automatically through **garbage collection**, but understanding how memory allocation works is crucial for writing efficient and optimized code.
 
@@ -592,7 +592,7 @@ createUser(); // The 'user' object becomes unreachable after function execution
 - Use **efficient loops and avoid unnecessary object references**.
 - Optimize **arrays and objects** by minimizing deep copies.
 
-## 20. Understanding Classes in JavaScript
+## 21. Understanding Classes in JavaScript
 
 ### 1. What Are Classes?
 
@@ -762,7 +762,7 @@ myCar.startCar(); // "Engine started"
 - **Readability**: More intuitive than prototype-based syntax.
 - **Scalability**: Encourages modular design.
 
-## 21. Software Design Patterns
+## 22. Software Design Patterns
 
 ### 1. What Are Design Patterns?
 
